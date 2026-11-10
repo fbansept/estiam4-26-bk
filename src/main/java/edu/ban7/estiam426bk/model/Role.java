@@ -1,5 +1,7 @@
 package edu.ban7.estiam426bk.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import edu.ban7.estiam426bk.view.AppUserView;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,6 +18,7 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
 
+    @JsonView(AppUserView.class)
     protected String name;
 
 }

@@ -1,7 +1,9 @@
 package edu.ban7.estiam426bk.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import edu.ban7.estiam426bk.dao.ProjectDao;
 import edu.ban7.estiam426bk.model.Project;
+import edu.ban7.estiam426bk.view.ProjectView;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +20,14 @@ public class ProjectController {
     protected final ProjectDao projectDao;
 
     @GetMapping("/all")
+    @JsonView(ProjectView.class)
     public List<Project> all() {
 
         return projectDao.findAll();
     }
 
     @GetMapping("/{id}")
+    @JsonView(ProjectView.class)
     public ResponseEntity<Project> read(@PathVariable int id) {
 
         Optional<Project> projectDb =  projectDao.findById(id);
@@ -36,6 +40,7 @@ public class ProjectController {
     }
 
     @PostMapping
+    @JsonView(ProjectView.class)
     public ResponseEntity<Project> create(@RequestBody Project newUser) {
 
         projectDao.save(newUser);
@@ -44,6 +49,7 @@ public class ProjectController {
     }
 
     @PutMapping("/{id}")
+    @JsonView(ProjectView.class)
     public ResponseEntity<Project> update(
             @PathVariable int id,
             @RequestBody Project alteredUser) {
