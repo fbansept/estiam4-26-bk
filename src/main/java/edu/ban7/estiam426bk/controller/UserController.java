@@ -38,7 +38,7 @@ public class UserController {
         return new ResponseEntity<>(appUserDb.get(), HttpStatus.OK);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<AppUser> create(@RequestBody AppUser newUser) {
 
         appUserDao.save(newUser);

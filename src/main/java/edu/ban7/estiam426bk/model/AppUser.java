@@ -1,12 +1,12 @@
 package edu.ban7.estiam426bk.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,4 +22,9 @@ public class AppUser {
     @JsonIgnore
     protected String password;
 
+    @ManyToOne(optional = false)
+    protected Role role;
+
+    @OneToMany(mappedBy = "owner")
+    protected List<Project> projects = new ArrayList<>();
 }
